@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor count</title>
+</head>
+<style>
+    body {
+  background: #4e397a;
+  color: #fff;
+  font-size: 80px;
+}
+span {
+  display: inline-block;
+  padding: 6px 6px 4px;
+  border-radius: 3px;
+  background: #b09dc4;
+  margin-right: 8px;
+}
+.center {
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+}
+.message {
+  color: #ccc6e3;
+  font-family: Verdana;
+  font-size: 20px;
+}
+</style>
+<script>
+  function gs(c){
+    let f='';
+    for (let i of '0000'+ c +'') {
+      f+="<span>" +i +"</span>"
+      
+    }
+    return f
+  }
+     
+fetch('http://localhost:8080/visitcount',{method:"POST"}).then(r=>r.json().then(d=>console.log(d)))
+fetch('http://localhost:8080/visitcount').then(r=>r.json().then(d=>{
+
+  console.log(d);
+  document.getElementById("counter").innerHTML=gs(d.count)
+
+}))
+
+</script>
+<body>
+    <!-- <h1>Visitor Count Homepage</h1> -->
+
+    <!-- <div id="visitor" ></div> -->
+    <br>
+    <div class="center" id="counter">
+        
+  
+      </div>
+      
+      <div class="center message">
+        Have visited this site 
+        <br>
+        
+      </div>
+</body>
+</html>
